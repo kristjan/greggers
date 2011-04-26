@@ -1,0 +1,37 @@
+<h1>Listing gregs</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>X</th>
+    <th>Y</th>
+    <th>Head</th>
+    <th>Photo file name</th>
+    <th>Photo content type</th>
+    <th>Photo file size</th>
+    <th>Photo updated at</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @gregs.each do |greg| %>
+  <tr>
+    <td><%= greg.name %></td>
+    <td><%= greg.x %></td>
+    <td><%= greg.y %></td>
+    <td><%= greg.head_id %></td>
+    <td><%= greg.photo_file_name %></td>
+    <td><%= greg.photo_content_type %></td>
+    <td><%= greg.photo_file_size %></td>
+    <td><%= greg.photo_updated_at %></td>
+    <td><%= link_to 'Show', greg %></td>
+    <td><%= link_to 'Edit', edit_greg_path(greg) %></td>
+    <td><%= link_to 'Destroy', greg, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Greg', new_greg_path %>

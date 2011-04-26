@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @greg.name %></h1>
+<p>
+  <%= image_tag @greg.photo.url %>
+  <%= image_tag @greg.head.photo.url, :style => @greg.style %>
+</p>
+
+<%= link_to 'Edit', edit_greg_path(@greg) %> |
+<%= link_to 'Back', gregs_path %>

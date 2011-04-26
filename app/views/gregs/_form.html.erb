@@ -1,3 +1,7 @@
+<%- content_for :head do -%>
+  <%= stylesheet_link_tag 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css' %>
+  <%= javascript_include_tag 'gregs/edit' %>
+<%- end -%>
 <%= form_for(@greg, :html => {:multipart => true}) do |f| %>
   <% if @greg.errors.any? %>
     <div id="error_explanation">
@@ -11,26 +15,32 @@
     </div>
   <% end %>
 
+  <%= f.hidden_field :x %>
+  <%= f.hidden_field :y %>
+
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :x %><br />
-    <%= f.text_field :x %>
-  </div>
-  <div class="field">
-    <%= f.label :y %><br />
-    <%= f.text_field :y %>
-  </div>
-  <div class="field">
-    <%= f.label :scale %><br />
-    <%= f.text_field :scale %>
-  </div>
-  <div class="field">
     <%= f.label :head_id %><br />
     <%= f.collection_select :head_id, Head.all, :id, :name %>
   </div>
+  <div class="field">
+    <%= f.label :scale %><br />
+    <div class="slider"></div>
+    <%= f.text_field :scale %>
+  </div>
+
+  <% unless @greg.new_record? || @greg.photo.nil? %>
+    <p>
+      <%= image_tag @greg.photo.url %>
+      <%= image_tag @greg.head.photo.url,
+                    :style => @greg.style,
+                    :id => "greg_head",
+                    :class => 'draggable'%>
+    </p>
+  <% end %>
   <div class="field">
     <%= f.label :photo %><br />
     <%= f.file_field :photo %>

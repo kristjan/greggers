@@ -19,6 +19,7 @@ class Greg < ActiveRecord::Base
       :position           => :absolute,
       :top                => "#{y}px",
       :left               => "#{x}px",
+      "transform"         => "scale(#{scale})",
       "-moz-transform"    => "scale(#{scale})",
       "-webkit-transform" => "scale(#{scale})"
     }.map { |k,v| "#{k}: #{v}" }.join(';')

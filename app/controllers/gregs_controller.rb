@@ -44,7 +44,7 @@ class GregsController < ApplicationController
 
     respond_to do |format|
       if @greg.save
-        format.html { redirect_to(@greg, :notice => 'Greg was successfully created.') }
+        format.html { redirect_to(edit_greg_path(@greg), :notice => 'Greg was successfully created.') }
         format.xml  { render :xml => @greg, :status => :created, :location => @greg }
       else
         format.html { render :action => "new" }
